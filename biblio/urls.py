@@ -21,6 +21,7 @@ from django.contrib import admin
 from web import views
 
 urlpatterns = [
+    url(r'^$', views.listado, name='listado'),
     url(r'^admin/', admin.site.urls),
     url(r'^libro/(?P<numero_libro>[0-9]+)/', views.libro, name='libro'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

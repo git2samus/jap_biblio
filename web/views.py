@@ -5,7 +5,11 @@ from django.shortcuts import get_object_or_404
 
 from web.models import Libro
 
-# Create your views here.
+def listado(request):
+    query = Libro.objects.all()
+    return render(request, 'listado.html', context={'listado': query})
+
+
 def libro(request, numero_libro):
     #libro = Libro.objects.get(id=numero_libro)
     libro = get_object_or_404(Libro, id=numero_libro)
