@@ -4,6 +4,7 @@
   {% csrf_token %}
   {% if libro.prestado %}
     <input type="hidden" name="accion" value="devolver">
+    Devolver antes de: {{ libro.fecha_devolucion }}
     <input type="submit" value="devolver">
   {% else %}
     <input type="hidden" name="accion" value="prestar">
