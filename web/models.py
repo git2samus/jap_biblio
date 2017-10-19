@@ -7,6 +7,7 @@ class Libro(models.Model):
     isbn = models.CharField(max_length=13)
 
     prestado = models.BooleanField()
+    fecha_devolucion = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return "Libro <{} ({})>".format(self.titulo, self.isbn)
