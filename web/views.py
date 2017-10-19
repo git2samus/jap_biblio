@@ -11,7 +11,10 @@ def listado(request):
 
 
 def libro(request, numero_libro):
-    #libro = Libro.objects.get(id=numero_libro)
     libro = get_object_or_404(Libro, id=numero_libro)
-    #return HttpResponse("{} ({})".format(libro.titulo, libro.isbn))
+
+    if request.method == 'POST':
+        libro.prestado = request.POST['accion'] == 'prestar'
+        libro.save()
+
     return render(request, 'libro.html', context={'libro': libro})

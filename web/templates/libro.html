@@ -1,1 +1,12 @@
 {{ libro.titulo }} &lt;{{ libro.isbn }}&gt;
+
+<form method="post" action=".">
+  {% csrf_token %}
+  {% if libro.prestado %}
+    <input type="hidden" name="accion" value="devolver">
+    <input type="submit" value="devolver">
+  {% else %}
+    <input type="hidden" name="accion" value="prestar">
+    <input type="submit" value="prestar">
+  {% endif %}
+</form>
