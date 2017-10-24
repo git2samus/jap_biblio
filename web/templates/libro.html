@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 {{ libro.titulo }} &lt;{{ libro.isbn }}&gt;
 
 <form method="post" action=".">
@@ -11,3 +14,4 @@
     <input type="submit" value="prestar">
   {% endif %}
 </form>
+{% endblock %}

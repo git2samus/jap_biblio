@@ -1,5 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <ol>
 {% for libro in listado %}
   <li><a href="{% url 'libro' libro.id %}">{{ libro.titulo }} &lt;{{ libro.isbn }}&gt;</a></li>
 {% endfor %}
 </ol>
+{% endblock %}
