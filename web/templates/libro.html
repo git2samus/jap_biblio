@@ -3,6 +3,10 @@
 {% block content %}
 {{ libro.titulo }} &lt;{{ libro.isbn }}&gt;
 
+{% if msg %}
+  <script>alert('{{ msg }}');</script>
+{% endif %}
+
 <form method="post" action=".">
   {% csrf_token %}
   {% if libro.prestado %}

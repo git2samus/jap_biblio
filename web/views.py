@@ -14,13 +14,17 @@ def listado(request):
 def libro(request, numero_libro):
     libro = get_object_or_404(Libro, id=numero_libro)
 
+    mensaje = ""
     if request.method == 'POST':
         if request.POST['accion'] == 'prestar':
-            libro.prestado = True
-            libro.fecha_devolucion = datetime.utcnow() + timedelta(days=15)
+            if request.user.is_authenticated:
+                libro.prestado = True
+                libro.fecha_devolucion = datetime.utcnow() + timedelta(days=15)
+            else:
+                mensaje = "Quien te conoce papá? Anda a loguearte ñeri"
         else:
             libro.prestado = False
             libro.fecha_devolucion = None
         libro.save()
 
-    return render(request, 'libro.html', context={'libro': libro})
+    return render(request, 'libro.html', context={'libro': libro, 'msg': mensaje})
