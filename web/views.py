@@ -18,12 +18,12 @@ def libro(request, numero_libro):
     if request.method == 'POST':
         if request.POST['accion'] == 'prestar':
             if request.user.is_authenticated:
-                libro.prestado = True
+                libro.prestado = request.user
                 libro.fecha_devolucion = datetime.utcnow() + timedelta(days=15)
             else:
                 mensaje = "Quien te conoce papá? Anda a loguearte ñeri"
         else:
-            libro.prestado = False
+            libro.prestado = None
             libro.fecha_devolucion = None
         libro.save()
 
