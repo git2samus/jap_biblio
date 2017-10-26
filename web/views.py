@@ -23,8 +23,11 @@ def libro(request, numero_libro):
             else:
                 mensaje = "Quien te conoce papá? Anda a loguearte ñeri"
         else:
-            libro.prestado = None
-            libro.fecha_devolucion = None
+            if request.user == libro.prestado:
+                libro.prestado = None
+                libro.fecha_devolucion = None
+            else:
+                mensaje = "No autorizado pariente"
         libro.save()
 
     return render(request, 'libro.html', context={'libro': libro, 'msg': mensaje})
